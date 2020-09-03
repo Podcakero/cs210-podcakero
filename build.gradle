@@ -6,6 +6,10 @@ repositories {
     jcenter()
 }
 
+tasks.withType(JavaCompile).each {
+	it.options.compilerArgs.add('--enable-preview')
+}
+
 java {
 	sourceCompatibility = JavaVersion.VERSION_14
 	targetCompatibility = JavaVersion.VERSION_14
@@ -22,6 +26,8 @@ dependencies {
 
 test {
 	useJUnitPlatform()
+
+	jvmArgs(['--enable-preview'])
 
 	testLogging {
 		showExceptions true
