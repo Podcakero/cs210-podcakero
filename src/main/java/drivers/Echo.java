@@ -9,23 +9,25 @@ import types.Response;
 /*
  * Example:
  *  ECHO "Hello, world!"
- * 
+ *
  * Response:
  *  success flag
  *  message "Hello, world!"
  *  no result table
  */
-public class Echo implements Driver {
+public class Echo implements Driver
+{
 	static final Pattern pattern = Pattern.compile(
-		"ECHO\\s+\"([^\"]*)\"",
-		Pattern.CASE_INSENSITIVE
+			"ECHO\\s+\"([^\"]*)\"",
+			Pattern.CASE_INSENSITIVE
 	);
-
+	
 	@Override
-	public Response execute(String query, Database db) {
+	public Response execute (String query, Database db)
+	{
 		Matcher matcher = pattern.matcher(query.strip());
 		if (!matcher.matches()) return null;
-
+		
 		String text = matcher.group(1);
 		
 		return new Response(query, true, text, null);
